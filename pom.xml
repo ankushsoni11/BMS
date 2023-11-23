@@ -11,6 +11,8 @@
     <modules>
         <module>registry</module>
         <module>gateway</module>
+        <module>messaging</module>
+        <module>booking</module>
     </modules>
 
     <properties>
