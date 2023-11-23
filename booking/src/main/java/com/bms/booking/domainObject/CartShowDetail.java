@@ -31,7 +31,7 @@ public class CartShowDetail implements Serializable {
         detail.setSessionId(obj.getUserId());
         detail.setCityId(obj.getCityId());
         detail.setTheatreId(obj.getTheatreId());
-        detail.setAudiId(obj.getAudiId());
+        detail.setAudiId(obj.getAuditId());
         detail.setShowId(obj.getShowId());
         detail.setSeats(obj.getSeats());
         return detail;
@@ -43,7 +43,7 @@ public class CartShowDetail implements Serializable {
         detail.setSessionId(obj.getUserId());
         detail.setCityId(obj.getCityId());
         detail.setTheatreId(obj.getTheatreId());
-        detail.setAudiId(obj.getAudiId());
+        detail.setAudiId(obj.getAuditId());
         detail.setShowId(obj.getShowId());
         detail.setSeats(obj.getSeats());
         return detail;

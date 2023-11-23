@@ -13,6 +13,7 @@
         <module>gateway</module>
         <module>messaging</module>
         <module>booking</module>
+        <module>manager</module>
     </modules>
 
     <properties>
