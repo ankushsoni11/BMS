@@ -25,5 +25,5 @@ public class BookShowRequest {
     @Positive
     private Integer theatreId;
     @Positive
-    private Integer audiId;
+    private Integer auditId;
 }
