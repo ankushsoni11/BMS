@@ -31,7 +31,7 @@ public class CartServiceImpl implements CartService {
         cartOperations.computeBill(cartDetail);
         cartBookingCache.saveBookingDetail(cartDetail.getCartId(), cartDetail);
         BookShowResponse response = new BookShowResponse(cartDetail.getCartId(), request.getUserId(),
-                request.getCityId(), request.getTheatreId(), request.getAudiId(), request.getShowId(), request.getSeats(),
+                request.getCityId(), request.getTheatreId(), request.getAuditId(), request.getShowId(), request.getSeats(),
                 cartDetail.getCartBillDetail());
         return response;
     }
@@ -45,7 +45,7 @@ public class CartServiceImpl implements CartService {
         cartOperations.computeBill(cartDetail);
         cartBookingCache.saveBookingDetail(cartDetail.getCartId(), cartDetail);
         BookShowResponse response = new BookShowResponse(cartDetail.getCartId(), request.getUserId(),
-                request.getCityId(), request.getTheatreId(), request.getAudiId(), request.getShowId(), request.getSeats(),
+                request.getCityId(), request.getTheatreId(), request.getAuditId(), request.getShowId(), request.getSeats(),
                 cartDetail.getCartBillDetail());
         return response;
     }
@@ -70,7 +70,7 @@ public class CartServiceImpl implements CartService {
         event.setSeatsConfirmed(cartDetail.getSeats());
         seatLockPublisher.publish(cartDetail.getShowId().toString(), event);
         BookShowResponse response = new BookShowResponse(cartDetail.getCartId(), request.getUserId(),
-                request.getCityId(), request.getTheatreId(), request.getAudiId(), request.getShowId(), request.getSeats(),
+                request.getCityId(), request.getTheatreId(), request.getAuditId(), request.getShowId(), request.getSeats(),
                 cartDetail.getCartBillDetail());
         return response;
     }
@@ -95,7 +95,7 @@ public class CartServiceImpl implements CartService {
         event.setShowId(cartDetail.getShowId());
         seatLockPublisher.publish(cartDetail.getShowId().toString(), event);
         BookShowResponse response = new BookShowResponse(cartDetail.getCartId(), request.getUserId(),
-                request.getCityId(), request.getTheatreId(), request.getAudiId(), request.getShowId(), request.getSeats(),
+                request.getCityId(), request.getTheatreId(), request.getAuditId(), request.getShowId(), request.getSeats(),
                 cartDetail.getCartBillDetail());
         return response;
     }
