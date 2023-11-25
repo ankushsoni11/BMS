@@ -4,7 +4,9 @@ The is movie ticker booking application based on microservice architecture
 
 ## prerequisite
 Java 11
+
 Docker Hub
+
 docker run --name bms-redis -p 6379:6379  -d redis
 
 ## Services
@@ -26,3 +28,6 @@ public ResponseEntity<BookShowResponse> save(@Valid @RequestBody BookShowRequest
         return new ResponseEntity<BookShowResponse>(response, HttpStatus.CREATED);
         }
 ```
+
+## AWS Architecture View
+![alt text](./images/AWS-Infra.png "AWS Architecture View")
