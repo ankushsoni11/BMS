@@ -31,3 +31,7 @@ public ResponseEntity<BookShowResponse> save(@Valid @RequestBody BookShowRequest
 
 ## AWS Architecture View
 ![alt text](./images/AWS-Infra.png "AWS Architecture View")
+
+
+## High Level Design
+![alt text](./images/highlevel-design.png "High Level Design")
