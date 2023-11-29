@@ -47,13 +47,13 @@ theatres:
   exchange:
       name: theatre_exchange
       queue: theatre_exchange_queue
-mbp:
+bms:
   onboard:
     API_KEY: TestAPIKey
 logging:
   level:
     com:
-      mbp: DEBUG
+      bms: DEBUG
   pattern:
     level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
 ---
@@ -102,7 +102,7 @@ spring:
       on-profile: svt
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mbp_onboard
+    url: jdbc:mysql://localhost:3306/bms_onboard
     username: root
     password: password
     initialization-mode: always

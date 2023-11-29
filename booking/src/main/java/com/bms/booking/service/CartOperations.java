@@ -21,7 +21,7 @@ public class CartOperations {
     @Autowired
     private OnboardServiceApiClient catalogServiceApiClient;
 
-    @Value("${mbp.onboard.API_KEY}")
+    @Value("${bms.onboard.API_KEY}")
     public String API_KEY;
 
 
