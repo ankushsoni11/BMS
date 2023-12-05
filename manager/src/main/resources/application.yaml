@@ -1,24 +1,19 @@
 ## server configuration
 server:
-  port: 9003
+  port: 8003
 spring:
   application:
     name: manager
-  security: ## OAuth2 resource server configuration
-    oauth2:
-      resourceserver:
-        jwt:
-          jwk-set-uri: "http://localhost:7080/realms/master/protocol/openid-connect/certs"
   shutdown:
     enable: true
   profiles:
-    active: svt
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
-    connection-timeout: 10s
+    active: dev
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9093
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      group-id: movie-seat
   redis:
     host: localhost
     port: 6379
@@ -56,6 +51,15 @@ logging:
       bms: DEBUG
   pattern:
     level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
 ---
 
 
@@ -72,9 +76,10 @@ spring:
       on-profile: dev
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:test
+    url: jdbc:h2:mem:manager
    # url: jdbc:h2:tcp://localhost/~/test
     username: sa
+    password: sa
     initialization-mode: always
    # initialize: true
    # platform: h2
@@ -104,7 +109,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/bms_onboard
     username: root
-    password: password
+    password: LGcnsg@123
     initialization-mode: always
     data: data.sql
   jpa:

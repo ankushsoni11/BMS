@@ -1,3 +1,4 @@
+/*
 package com.bms.manager.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,3 +25,4 @@ public class ApiKeyInterceptor implements HandlerInterceptor {
         return true;
     }
 }
+*/

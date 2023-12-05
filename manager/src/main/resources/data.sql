@@ -25,28 +25,6 @@ insert into `movie_shows` (`id`,`movie_id`,`audi_id`,`show_time`,`show_date`,`bl
 insert into `movie_shows` (`id`,`movie_id`,`audi_id`,`show_time`,`show_date`,`blocked_seats`,`booked_seats`) values (7,'4',3,'10:30:00','2023-10-01',0,0);
 insert into `movie_shows` (`id`,`movie_id`,`audi_id`,`show_time`,`show_date`,`blocked_seats`,`booked_seats`) values (8,'4',3,'18:00:00','2023-10-01',0,0);
 
-CREATE OR REPLACE VIEW bms_search.MovieTheaterView AS
-SELECT
-    m.name as movie_name,
-	mv.type as movie_variant,
-	t.name as theatre_name,
-	c.name as city_name,
-    ms.show_time as show_time,
-	ms.show_date as show_date,
-	ms.id as show_id,
-    s.name as screen_name
-FROM
-    movie_shows ms
-INNER JOIN
-    movie m ON ms.movie_id = m.id
-INNER JOIN
-    movie_variant mv ON m.variant_id = mv.id
-INNER JOIN
-    screen s ON ms.audi_id = s.id
-INNER JOIN
-    theatre t ON s.theatre_id = t.id
-INNER JOIN
-    city c ON t.city_id = c.id;
 --CREATE INDEX idx_MovieTheaterView_city_name ON bms_search.MovieTheaterView (city_name);
 --CREATE INDEX idx_MovieTheaterView_show_date ON bms_search.MovieTheaterView (show_date);
 --add show date> todaydate-1 in where clause to fetch the currently running shows

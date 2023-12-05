@@ -1,3 +1,4 @@
+/*
 package com.bms.manager.config;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -26,3 +27,4 @@ public class WebMvcConfig implements WebMvcConfigurer {
         return API_KEY;
     }
 }
+*/

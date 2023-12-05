@@ -6,7 +6,6 @@ import com.bms.manager.domainObject.TheatreOnboardRequest;
 import com.bms.manager.domainObject.TheatreResponse;
 import com.bms.manager.entity.City;
 import com.bms.manager.entity.Theatre;
-import com.bms.manager.pubsub.TheatresPublisher;
 
 import com.bms.manager.util.Operation;
 import com.bms.manager.repo.CityRepository;
@@ -27,8 +26,8 @@ public class TheatreServiceImpl implements TheatreService {
     private TheatreRepository theatreRepository;
     @Autowired
     private CityRepository cityRepository;
-    @Autowired
-    private TheatresPublisher theatresPublisher;
+    /*@Autowired
+    private TheatresPublisher theatresPublisher;*/
 
     @Override
     public TheatreResponse saveTheatre(TheatreOnboardRequest request) throws Exception {
