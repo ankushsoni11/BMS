@@ -5,6 +5,8 @@ import com.bms.order.domainObject.BookShowRequest;
 import com.bms.order.domainObject.BookShowResponse;
 import com.bms.order.domainObject.CartShowDetail;
 import com.bms.order.pubsub.OrderCreatePublisher;
+import com.bms.order.pubsub.PaymentGatewayPublisher;
+import com.bms.order.pubsub.events.PaymentProcessedEvent;
 import com.bms.order.pubsub.events.SeatLockEvent;
 import com.bms.order.redisCache.CartBookingCacheRepository;
 import com.bms.order.redisCache.SeatLockRepository;
@@ -25,6 +27,9 @@ public class CartServiceImpl implements CartService {
     private SeatLockRepository seatLockRepository;
     @Autowired
     private OrderCreatePublisher seatLockPublisher;
+
+    @Autowired
+    private PaymentGatewayPublisher paymentGatewayPublisher;
 
     @Override
     public BookShowResponse saveCart(BookShowRequest request) throws Exception {
@@ -71,6 +76,11 @@ public class CartServiceImpl implements CartService {
         event.setShowId(cartDetail.getShowId());
         event.setSeatsConfirmed(cartDetail.getSeats());
         seatLockPublisher.publish(cartDetail.getShowId().toString(), event);
+        PaymentProcessedEvent paymentProcessedEvent = new PaymentProcessedEvent();
+        paymentProcessedEvent.setCartId(cartDetail.getCartId());
+        paymentProcessedEvent.setAmount(100D);
+        paymentProcessedEvent.setPayerEmail("ankushSoni11@gmail.con");
+        paymentGatewayPublisher.publish(cartDetail.getShowId().toString(), paymentProcessedEvent);
         BookShowResponse response = new BookShowResponse(cartDetail.getCartId(), request.getUserId(),
                 request.getCityId(), request.getTheatreId(), request.getAuditId(), request.getShowId(), request.getSeats(),
                 cartDetail.getCartBillDetail());

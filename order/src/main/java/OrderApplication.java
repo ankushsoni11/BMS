@@ -17,7 +17,6 @@ import org.springframework.kafka.annotation.EnableKafka;
 @EnableJpaRepositories(basePackages = {"com.bms.order.repo"})
 @EntityScan("com.bms.order.entity.**")
 @EnableKafka
-@EnableDiscoveryClient
 public class OrderApplication {
     public static void main(String[] args) {
         SpringApplication.run(OrderApplication.class, args);

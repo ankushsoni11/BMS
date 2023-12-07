@@ -4,6 +4,7 @@ import com.bms.manager.pubsub.events.SeatConfirmEvent;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -22,14 +23,12 @@ public class SeatConfirmEventListener {
 
 
     @KafkaListener(topics = "order-events", groupId = "order-event-group")
-    public void onMessage(String message) throws Exception {
+    public void getSeatReservationEvent(ConsumerRecord<String, String> record) throws Exception {
         try {
 
-            Optional<SeatConfirmEvent> deserializedObject = convertJsonToObject(message);
+            Optional<SeatConfirmEvent> deserializedObject = convertJsonToObject(record.value());
             // Confirm the seat in the DB, and update the cache for read by sending event
-            log.info("Seat Confirmed in the cache :: {}", message);
-
-
+            log.info("Seat Confirmed in the cache :: {}", record.value());
         } catch (Exception e) {
             // Handle errors and optionally reject the message
             log.info("Seat Confirmed", e);

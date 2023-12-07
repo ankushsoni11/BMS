@@ -6,13 +6,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Service;
 
 @Slf4j
+@Service
 public class PaymentGatewayPublisher {
     @Autowired
     KafkaTemplate<String, String> kafkaTemplate;
     @Autowired
     ObjectMapper objectMapper;
+
+    @Autowired
+    public PaymentGatewayPublisher(KafkaTemplate kafkaTemplate) {
+        // this.rabbitTemplate = rabbitTemplate;
+    }
 
     public void publish(String key, PaymentProcessedEvent message) {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -22,8 +29,8 @@ public class PaymentGatewayPublisher {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        log.info("Sending event to order-events {} ", convertedString);
-        kafkaTemplate.send("order-events", convertedString);
+        log.info("Sending event to payment-event {} ", convertedString);
+        kafkaTemplate.send("payment-event", convertedString);
         // publish message to Kafka i.e. shows.seats.publisher.topic
     }
 
